@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notebook MVP</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Notebook</h1>
+    <span class="tag">MVP</span>
+  </header>
+  <main class="layout">
+    <section class="panel">
+      <h2>Sources</h2>
+      <label class="upload">
+        <input type="file" id="file-input" multiple accept=".txt,.md,.pdf">
+        <span>+ Add files (.pdf, .txt, .md)</span>
+      </label>
+      <details class="paste">
+        <summary>Paste text</summary>
+        <input id="paste-name" placeholder="Title (optional)">
+        <textarea id="paste-text" rows="6" placeholder="Paste notes or an article"></textarea>
+        <button id="paste-add" type="button">Add source</button>
+      </details>
+      <ul id="source-list"></ul>
+      <p class="hint">Checked sources are used for chat and Studio.</p>
+    </section>
+    <section class="panel chat">
+      <h2>Chat</h2>
+      <div id="messages">
+        <p class="empty">Add a source, then ask a question. Every answer cites the passages it came from.</p>
+      </div>
+      <form id="chat-form">
+        <input id="question" placeholder="Ask about your sources..." autocomplete="off">
+        <button type="submit">Ask</button>
+      </form>
+    </section>
+    <section class="panel">
+      <h2>Studio</h2>
+      <div class="studio-buttons">
+        <button type="button" data-kind="study_guide">Study guide</button>
+        <button type="button" data-kind="faq">FAQ</button>
+        <button type="button" data-kind="briefing">Briefing doc</button>
+      </div>
+      <div id="studio-output"></div>
+    </section>
+  </main>
+  <aside id="citation-panel" hidden>
+    <div class="citation-head">
+      <strong id="citation-title"></strong>
+      <button id="citation-close" type="button" aria-label="Close">&times;</button>
+    </div>
+    <p id="citation-text"></p>
+  </aside>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
